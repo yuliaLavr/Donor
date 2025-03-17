@@ -1,0 +1,36 @@
+@startuml
+class Main {
+    +main(String[] args)
+}
+class AuthManager {
+    -Registration registration
+    -Login login
+    -Scanner scanner
+    +AuthManager()
+    +start()
+    -showMenu()
+    -getUserChoice(): int
+    -loginUser()
+    -registerUser()
+    -exitProgram()
+}
+class Registration {
+    -static final String FILE_NAME
+    -HashMap<String, String> users
+    +Registration()
+    +register(String username, String password)
+    +userExists(String username): boolean
+    +getPassword(String username): String
+    -saveUsers()
+    -loadUsers()
+}
+class Login {
+    -Registration registration
+    +Login(Registration registration)
+    +loginUser(String username, String password): boolean
+}
+Main --> AuthManager
+AuthManager --> Registration
+AuthManager --> Login
+Login --> Registration
+@enduml
